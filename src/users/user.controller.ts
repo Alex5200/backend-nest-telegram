@@ -1,4 +1,11 @@
-import { Controller, Post, UseInterceptors, UploadedFile, Body, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  Body,
+  Get,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -10,15 +17,18 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('upload')
-  @UseInterceptors(FileInterceptor('photo', {
-    storage: diskStorage({
-      destination: './uploads', // папка для сохранения фото
-      filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        cb(null, uniqueSuffix + extname(file.originalname));
-      },
+  @UseInterceptors(
+    FileInterceptor('photo', {
+      storage: diskStorage({
+        destination: './uploads', // папка для сохранения фото
+        filename: (req, file, cb) => {
+          const uniqueSuffix =
+            Date.now() + '-' + Math.round(Math.random() * 1e9);
+          cb(null, uniqueSuffix + extname(file.originalname));
+        },
+      }),
     }),
-  }))
+  )
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     schema: {
