@@ -11,19 +11,36 @@ export class User {
   @Column()
   username: string;
 
-  @ApiProperty({ example: '+79991234567', description: 'Телефон', required: false })
+  @ApiProperty({
+    example: '+79991234567',
+    description: 'Телефон',
+    required: false,
+  })
   @Column({ nullable: true })
   phone: string;
 
-  @ApiProperty({ example: 'ivan@mail.com', description: 'Почта', required: false })
+  @ApiProperty({
+    example: 'ivan@mail.com',
+    description: 'Почта',
+    required: false,
+  })
   @Column({ nullable: true })
   mail: string;
 
-  @ApiProperty({ example: 'Описание пользователя', description: 'Описание', required: false })
+  @ApiProperty({
+    example: 'Описание пользователя',
+    description: 'Описание',
+    required: false,
+  })
   @Column({ nullable: true })
   description: string;
 
-  @ApiProperty({ type: 'string', format: 'binary', description: 'Фото', required: false })
+  @ApiProperty({
+    type: 'string',
+    format: 'binary',
+    description: 'Фото',
+    required: false,
+  })
   @Column({ type: 'blob', nullable: true })
   photo: string; // теперь это путь к файлу, а не Buffer
 }
